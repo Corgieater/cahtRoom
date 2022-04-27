@@ -3,6 +3,7 @@ import time
 from model import *
 import boto3
 
+
 star_point = 0
 
 app = Flask(
@@ -101,4 +102,4 @@ def get_old_data():
 
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True)
+    app.run(port=3000)

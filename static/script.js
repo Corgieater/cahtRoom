@@ -3,9 +3,6 @@ sub.addEventListener("click", async (e) => {
   e.preventDefault();
   // 拿表單資訊
   const formData = new FormData(document.querySelector("#form"));
-  for (let value of formData.values()) {
-    console.log(value);
-  }
   // 上傳資料
   let req = await fetch("/upload", {
     method: "POST",
@@ -18,6 +15,10 @@ sub.addEventListener("click", async (e) => {
     let file = data["fileName"];
     let message = data["text"];
     makeMessages(file, message, "first");
+  }
+  let inputs = document.querySelectorAll("input");
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].value = null;
   }
 });
 
@@ -46,7 +47,6 @@ async function getLatestData() {
     method: "GET",
   });
   let res = await req.json();
-  console.log(res);
   return res;
 }
 
@@ -61,8 +61,6 @@ async function getOldData() {
 async function showOldMessages() {
   let info = await getOldData();
   for (let i = 0; i < info["data"]["text"].length; i++) {
-    console.log(info["data"]["img"][i]);
-    console.log(info["data"]["text"][i]);
     makeMessages(info["data"]["img"][i], info["data"]["text"][i]);
   }
 }
