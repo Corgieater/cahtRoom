@@ -76,19 +76,9 @@ def save_data():
         }
 
 
-@app.route('/getlatestdata')
-def get_latest_data():
-    latest_message = database.get_newest_data_from_database()
-    data = {
-        'text': latest_message[0],
-        'fileName': latest_message[1]
-    }
-    return jsonify(data)
-
-
 @app.route('/getolddata')
 def get_old_data():
-    data = database.get_old_data(0)
+    data = database.get_old_data()
     json_data = {
         'data': {
             'text': [],
