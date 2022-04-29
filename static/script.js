@@ -32,9 +32,7 @@ async function makeMessages(fileName, text, sequence = "normal") {
 }
 
 async function getOldData() {
-  let req = await fetch("/getolddata", {
-    method: "GET",
-  });
+  let req = await fetch("/getolddata");
   let res = await req.json();
   return res;
 }
